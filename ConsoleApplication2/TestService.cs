@@ -1,4 +1,5 @@
-﻿using NServiceBus.Logging;
+﻿using NHibernate;
+using NServiceBus.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace ConsoleApplication2
 {
     public class TestService : IService
     {
+        public TestService(ISession session)
+        {
+
+        }
+
         static ILog log = LogManager.GetLogger<TestService>();
 
         public void SomeMethod()

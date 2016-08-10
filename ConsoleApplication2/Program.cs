@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ninject;
 
 namespace ConsoleApplication2
 {
@@ -25,12 +26,21 @@ namespace ConsoleApplication2
             var registration = Component.For<IService>().ImplementedBy<TestService>();
 
             container.Register(registration);
-
+            var sadsad = busConfiguration.GetSettings();
             busConfiguration.UseContainer<WindsorBuilder>(
                 customizations: customizations =>
                 {
                     customizations.ExistingContainer(container);
                 });
+
+            //var kernel = new StandardKernel();
+            //kernel.Bind<IService>().To<TestService>();
+
+            //busConfiguration.UseContainer<NinjectBuilder>(
+            //    customizations: customizations =>
+            //    {
+            //        customizations.ExistingKernel(kernel);
+            //    });
 
             busConfiguration.EndpointName("Register.Test");
             busConfiguration.EnableInstallers();
